@@ -208,7 +208,7 @@ footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
 <!-- ═══════ NAVBAR ═══════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="home.html" class="nav-logo">
+    <a href="{% url 'home' %}" class="nav-logo">
       <div class="nav-logo-icon"><i class="fa-solid fa-book-open"></i></div>
       <span class="nav-logo-text">Goodreads</span>
     </a>
@@ -217,11 +217,11 @@ footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
       <button class="ns-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
     <div class="nav-links">
-      <a href="home.html"    class="nav-link active">Home</a>
+      <a href="{% url 'home' %}"    class="nav-link active">Home</a>
       <a href="#featured"    class="nav-link">Books</a>
       <a href="#genres"      class="nav-link">Genres</a>
       <a href="#new"         class="nav-link">New Arrivals</a>
-      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="{% url 'contact' %}" class="nav-link">Contact</a>
     </div>
     <div class="nav-icons">
       <button class="nic" title="Wishlist" aria-label="Wishlist"><i class="fa-regular fa-heart"></i><span class="nbadge">3</span></button>
@@ -248,11 +248,11 @@ footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
       <button class="mob-icon-btn"><i class="fa-solid fa-bag-shopping"></i> Cart (2)</button>
     </div>
     <span class="mob-section">Navigate</span>
-    <a href="home.html"    class="mob-link active"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="{% url 'home' %}"    class="mob-link active"><i class="fa-solid fa-house"></i>Home</a>
     <a href="#featured"    class="mob-link"><i class="fa-solid fa-book"></i>Books</a>
     <a href="#genres"      class="mob-link"><i class="fa-solid fa-tag"></i>Genres</a>
     <a href="#new"         class="mob-link"><i class="fa-solid fa-fire"></i>New Arrivals</a>
-    <a href="contact.html" class="mob-link"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="{% url 'contact' %}" class="mob-link"><i class="fa-solid fa-envelope"></i>Contact</a>
     <span class="mob-section">Account</span>
     <a href="#" class="mob-link"><i class="fa-regular fa-user"></i>Sign In / Register</a>
     <button class="mob-cta-btn" id="mob-cta">Browse All Books</button>
@@ -270,7 +270,7 @@ footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
       <p class="hero-sub">Your curated gateway to the world's finest literature — from timeless classics to this season's most talked-about releases.</p>
       <div class="hero-btns">
         <a href="#featured" class="btn-gold"><i class="fa-solid fa-magnifying-glass" style="font-size:.8rem"></i> Explore Books</a>
-        <a href="contact.html" class="btn-ghost">Get in Touch <i class="fa-solid fa-arrow-right" style="font-size:.78rem"></i></a>
+        <a href="{% url 'contact' %}" class="btn-ghost">Get in Touch <i class="fa-solid fa-arrow-right" style="font-size:.78rem"></i></a>
       </div>
       <div class="hero-trust">
         <div class="trust-it"><i class="fa-solid fa-truck-fast"></i> Free shipping over $35</div>
@@ -382,7 +382,7 @@ footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
       <h2 class="cta-h2">A reading club for the <em>curious mind.</em></h2>
       <p class="cta-p">Personalized recommendations, early access to new releases, and exclusive member discounts every month.</p>
     </div>
-    <a href="contact.html" class="btn-gold" style="padding:14px 30px">Get Started Free <i class="fa-solid fa-arrow-right" style="font-size:.78rem"></i></a>
+    <a href="{% url 'contact' %}" class="btn-gold" style="padding:14px 30px">Get Started Free <i class="fa-solid fa-arrow-right" style="font-size:.78rem"></i></a>
   </div>
 </div>
 </main>
@@ -415,7 +415,7 @@ footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
         <div class="flinks">
           <a href="#"><i class="fa-solid fa-truck"></i>Shipping &amp; Returns</a>
           <a href="#"><i class="fa-solid fa-map-pin"></i>Track Order</a>
-          <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact Us</a>
+          <a href="{% url 'contact' %}"><i class="fa-solid fa-envelope"></i>Contact Us</a>
           <a href="#"><i class="fa-solid fa-circle-question"></i>FAQs</a>
         </div>
       </div>

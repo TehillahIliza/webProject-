@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -200,11 +201,11 @@ select.finput{padding-right:40px;cursor:pointer}
       <button class="mob-icon-btn"><i class="fa-solid fa-bag-shopping"></i> Cart (2)</button>
     </div>
     <span class="mob-section">Navigate</span>
-    <a href="home.html"          class="mob-link"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="{% url 'home' %}"          class="mob-link"><i class="fa-solid fa-house"></i>Home</a>
     <a href="home.html#featured" class="mob-link"><i class="fa-solid fa-book"></i>Books</a>
     <a href="home.html#genres"   class="mob-link"><i class="fa-solid fa-tag"></i>Genres</a>
     <a href="home.html#new"      class="mob-link"><i class="fa-solid fa-fire"></i>New Arrivals</a>
-    <a href="contact.html"       class="mob-link active"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <a href="{% url 'contact' %}"       class="mob-link active"><i class="fa-solid fa-envelope"></i>Contact</a>
     <span class="mob-section">Account</span>
     <a href="#" class="mob-link"><i class="fa-regular fa-user"></i>Sign In / Register</a>
     <button class="mob-cta-btn" id="mob-cta">Browse All Books</button>
@@ -215,7 +216,7 @@ select.finput{padding-right:40px;cursor:pointer}
 <main>
 <div class="page-hero">
   <div class="breadcrumb">
-    <a href="home.html"><i class="fa-solid fa-house" style="font-size:.78rem"></i>&nbsp;Home</a>
+    <a href="{% url 'home' %}"><i class="fa-solid fa-house" style="font-size:.78rem"></i>&nbsp;Home</a>
     <i class="fa-solid fa-chevron-right" style="font-size:.58rem;opacity:.4"></i>
     <span>Contact</span>
   </div>
@@ -330,7 +331,7 @@ select.finput{padding-right:40px;cursor:pointer}
         <div class="flinks">
           <a href="#"><i class="fa-solid fa-truck"></i>Shipping &amp; Returns</a>
           <a href="#"><i class="fa-solid fa-map-pin"></i>Track Order</a>
-          <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact Us</a>
+          <a href="{% url 'contact' %}"><i class="fa-solid fa-envelope"></i>Contact Us</a>
           <a href="#"><i class="fa-solid fa-circle-question"></i>FAQs</a>
         </div>
       </div>
