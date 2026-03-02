@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact Us — Goodreads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<!-- Font Awesome — NO integrity hash (required for local file:// opening) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+/* ── SHARED BASE STYLES (same on every page) ── */
+:root{--gold:#c4862a;--gold-dark:#a06c1e;--gold-light:#f5edd8;--ink:#1a1510;--ink2:#2d2419;--ink3:#5c4d38;--muted:#a08c70;--cream:#fdfaf5;--border:#f0e4cc;--border2:#e8d8b4;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink2);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh}
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}ul{list-style:none}main{flex:1}
+.topbar{background:var(--gold);color:#fff;text-align:center;padding:9px 20px;font-size:.78rem;font-weight:500;letter-spacing:.03em;position:relative;z-index:10001}
+.topbar a{color:#fff;text-decoration:underline;margin-left:6px}.topbar a:hover{opacity:.85}
+.topbar-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;cursor:pointer;font-size:.9rem;opacity:.75}.topbar-close:hover{opacity:1}
+.navbar{position:sticky;top:0;z-index:9999;background:rgba(253,250,245,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(232,216,180,.6);transition:box-shadow .3s}.navbar.scrolled{box-shadow:0 4px 24px rgba(26,21,16,.1)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;gap:20px}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo-icon{width:40px;height:40px;border-radius:8px;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.nav-search{flex:1;max-width:460px;display:flex;align-items:center;background:var(--gold-light);border:1.5px solid var(--border2);border-radius:9px;overflow:hidden;transition:border-color .25s,box-shadow .25s,background .2s}
+.nav-search:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,134,42,.1);background:#fff}
+.ns-input{flex:1;padding:11px 14px;background:transparent;border:none;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--ink);outline:none}.ns-input::placeholder{color:#b09878}
+.ns-btn{padding:11px 16px;background:var(--gold);border:none;cursor:pointer;color:#fff;font-size:.9rem;transition:background .2s;flex-shrink:0}.ns-btn:hover{background:var(--gold-dark)}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{padding:8px 13px;font-size:.85rem;font-weight:500;color:var(--ink3);border-radius:7px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-link:hover{color:var(--gold);background:var(--gold-light)}.nav-link.active{color:var(--gold);font-weight:600}
+.nav-icons{display:flex;align-items:center;gap:3px;flex-shrink:0}
+.nic{position:relative;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink3);cursor:pointer;transition:background .2s,color .2s;border:none;background:transparent;font-size:1rem}
+.nic:hover{background:var(--gold-light);color:var(--gold)}
+.nbadge{position:absolute;top:5px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--gold);color:#fff;font-size:.58rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--cream)}
+.nav-sep{width:1px;height:30px;background:var(--border2);margin:0 4px;flex-shrink:0}
+.nav-signin{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border:1.5px solid var(--border2);border-radius:7px;font-size:.84rem;font-weight:500;color:var(--ink2);cursor:pointer;background:transparent;transition:border-color .25s,color .25s,background .2s;flex-shrink:0;white-space:nowrap}
+.nav-signin:hover{border-color:var(--gold);color:var(--gold);background:#fdf8f0}
+.nav-cta{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;background:var(--gold);color:#fff;border-radius:7px;font-size:.85rem;font-weight:600;flex-shrink:0;border:none;cursor:pointer;transition:background .25s,transform .2s,box-shadow .2s;box-shadow:0 3px 12px rgba(196,134,42,.3);white-space:nowrap}
+.nav-cta:hover{background:var(--gold-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(196,134,42,.38)}
+.hamburger{display:none;background:none;border:none;cursor:pointer;color:var(--ink2);font-size:1.35rem;padding:6px;flex-shrink:0;transition:color .2s}.hamburger:hover{color:var(--gold)}
+.mob-overlay{display:none;position:fixed;inset:0;background:rgba(15,12,9,.4);z-index:99990;backdrop-filter:blur(3px)}.mob-overlay.open{display:block}
+.mobile-nav{position:fixed;top:0;right:0;bottom:0;width:min(340px,92vw);background:var(--cream);z-index:99999;overflow-y:auto;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:-20px 0 50px rgba(26,21,16,.15)}.mobile-nav.open{transform:translateX(0)}
+.mob-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border)}
+.mob-close-btn{width:36px;height:36px;border-radius:7px;background:var(--gold-light);display:flex;align-items:center;justify-content:center;color:var(--ink2);font-size:1rem;cursor:pointer;border:none;transition:background .2s}.mob-close-btn:hover{background:var(--border2);color:var(--gold)}
+.mob-body{padding:16px 18px 40px}
+.mob-search{display:flex;align-items:center;background:var(--gold-light);border:1.5px solid var(--border2);border-radius:9px;overflow:hidden;margin-bottom:14px}
+.mob-search input{flex:1;padding:11px 14px;background:transparent;border:none;font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;color:var(--ink)}.mob-search input::placeholder{color:var(--muted)}
+.mob-search button{padding:11px 14px;background:var(--gold);border:none;color:#fff;cursor:pointer;font-size:.9rem}
+.mob-icons-row{display:flex;gap:8px;margin-bottom:4px}
+.mob-icon-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 8px;border-radius:8px;border:1.5px solid var(--border);font-size:.8rem;font-weight:500;color:var(--ink3);background:#fff;cursor:pointer;transition:border-color .2s,color .2s}
+.mob-icon-btn i{color:var(--gold)}.mob-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.mob-section{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:14px 8px 5px;display:block}
+.mob-link{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;font-size:.92rem;font-weight:500;color:var(--ink2);transition:background .18s,color .18s}
+.mob-link i{color:var(--gold);width:20px;text-align:center;font-size:.9rem;flex-shrink:0}.mob-link:hover,.mob-link.active{background:var(--gold-light);color:var(--gold)}
+.mob-cta-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:18px;padding:14px;background:var(--gold);color:#fff;border-radius:9px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:background .2s}.mob-cta-btn:hover{background:var(--gold-dark)}
+footer{background:var(--ink);color:#e8d8b4;padding:60px 0 0;margin-top:auto}
+.foot-inner{max-width:1280px;margin:0 auto;padding:0 32px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07)}
+.flogo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.flogo-ico{width:32px;height:32px;background:var(--gold);border-radius:5px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+.flogo-txt{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff}
+.fdesc{font-size:.875rem;color:#7a6651;line-height:1.75;max-width:230px}
+.fsocial{display:flex;gap:9px;margin-top:20px}
+.fsocial a{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(196,134,42,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:.8rem;transition:background .25s,color .25s,border-color .25s,transform .2s}
+.fsocial a:hover{background:var(--gold);color:#fff;border-color:var(--gold);transform:translateY(-2px)}
+.fct{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.flinks{display:flex;flex-direction:column;gap:10px}
+.flinks a{font-size:.875rem;color:#7a6651;display:inline-flex;align-items:center;gap:8px;transition:color .2s,padding-left .2s}
+.flinks a i{font-size:.72rem;color:var(--gold);width:13px;text-align:center}.flinks a:hover{color:var(--gold);padding-left:4px}
+.fnl-lbl{font-size:.82rem;color:#7a6651;line-height:1.65;margin-bottom:12px}
+.fnl-form{display:flex;border:1px solid rgba(255,255,255,.08);border-radius:6px;overflow:hidden}
+.fnl-form input{flex:1;padding:11px 13px;background:rgba(255,255,255,.04);border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:.84rem;outline:none}.fnl-form input::placeholder{color:#5c4d38}
+.fnl-form button{padding:11px 16px;background:var(--gold);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:background .2s}.fnl-form button:hover{background:var(--gold-dark)}
+.fbot{padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.fbot p{font-size:.78rem;color:#4a3c2c}.fbot-links{display:flex;gap:20px}.fbot-links a{font-size:.78rem;color:#4a3c2c;transition:color .2s}.fbot-links a:hover{color:var(--gold)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.nav-links{display:none}}
+@media(max-width:768px){.nav-search,.nav-icons,.nav-signin,.nav-cta{display:none}.hamburger{display:flex;align-items:center}.foot-grid{grid-template-columns:1fr 1fr;gap:32px}.foot-inner,.nav-inner{padding:0 20px}}
+@media(max-width:520px){.foot-grid{grid-template-columns:1fr;gap:24px}.fdesc{max-width:100%}}
+
+/* ── CONTACT-SPECIFIC STYLES ── */
+.page-hero{background:var(--ink);background-image:radial-gradient(ellipse 65% 80% at 50% 70%,rgba(196,134,42,.14) 0%,transparent 65%);padding:88px 40px 72px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,134,42,.4),transparent)}
+.breadcrumb{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.73rem;letter-spacing:.1em;text-transform:uppercase;color:#4a3c2c;margin-bottom:22px}
+.breadcrumb a{color:var(--gold)}.breadcrumb a:hover{text-decoration:underline}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;color:#fdfaf5;line-height:1.12;letter-spacing:-.02em}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero p{font-size:.98rem;color:#7a6651;max-width:430px;margin:14px auto 0;line-height:1.75;font-weight:300}
+
+.info-sec{padding:64px 40px 44px;background:var(--cream)}
+.info-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:11px;padding:32px 24px;text-align:center;transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s,border-color .3s}
+.info-card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(26,21,16,.09);border-color:rgba(196,134,42,.35)}
+.info-icon{width:56px;height:56px;border-radius:50%;background:var(--gold-light);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;color:var(--gold);transition:background .3s,color .3s,transform .3s}
+.info-card:hover .info-icon{background:var(--gold);color:#fff;transform:scale(1.08)}
+.info-card h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:7px}
+.info-card p{font-size:.86rem;color:#7a6651;line-height:1.7}.info-card a{color:var(--gold)}.info-card a:hover{text-decoration:underline}
+
+.form-sec{background:#f5edd8;padding:72px 40px 92px}
+.form-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:3fr 2fr;gap:56px;align-items:start}
+.form-card{background:#fff;border-radius:13px;border:1px solid var(--border);padding:44px 40px;box-shadow:0 8px 44px rgba(26,21,16,.06)}
+.form-eyebrow{display:block;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.form-h2{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.fg{margin-bottom:18px}
+.flabel{display:flex;align-items:center;gap:7px;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.flabel i{color:var(--gold);font-size:.78rem}
+.iwrap{position:relative}
+.iico{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#d4c4a8;font-size:.86rem;pointer-events:none;transition:color .25s}
+.ta-ico{top:14px;transform:none}
+.finput{width:100%;padding:12px 14px 12px 42px;border:1.5px solid var(--border2);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--ink);background:var(--cream);outline:none;transition:border-color .25s,box-shadow .25s,background .2s;-webkit-appearance:none}
+.finput::placeholder{color:#c8b498}
+.finput:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,134,42,.1);background:#fff}
+.iwrap:focus-within .iico{color:var(--gold)}
+textarea.finput{resize:vertical;min-height:140px;padding-top:12px;line-height:1.6}
+.sel-wrap::after{content:'\f107';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#c8b498;pointer-events:none;font-size:.82rem}
+select.finput{padding-right:40px;cursor:pointer}
+.privacy-note{display:flex;align-items:flex-start;gap:10px;padding:13px 15px;background:#fdf5e8;border:1px solid rgba(196,134,42,.16);border-radius:8px;margin-bottom:22px}
+.privacy-note i{color:var(--gold);font-size:.88rem;margin-top:2px;flex-shrink:0}
+.privacy-note p{font-size:.78rem;color:#7a6651;line-height:1.6;margin:0}
+.sbtn{width:100%;padding:15px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.93rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .25s,transform .2s,box-shadow .25s;box-shadow:0 4px 18px rgba(196,134,42,.32)}
+.sbtn:hover{background:var(--gold-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(196,134,42,.42)}
+#form-success{display:none;text-align:center;padding:48px 20px}
+.sring{width:72px;height:72px;border-radius:50%;background:#e8f0e9;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#6b8c6e}
+.stitle{font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--ink);margin-bottom:9px}
+.sp{font-size:.88rem;color:#7a6651;line-height:1.7;max-width:280px;margin:0 auto}
+
+.sb-eyebrow{display:block;font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.sb-h2{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:24px}
+.faq{background:#fff;border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:10px}
+.faq summary{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;list-style:none;font-size:.87rem;font-weight:500;color:var(--ink);transition:color .2s;user-select:none;-webkit-user-select:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq-left{display:flex;align-items:center;gap:9px}
+.faq-left i{color:var(--gold);font-size:.82rem;flex-shrink:0}
+.faq-arr{color:var(--gold);font-size:.72rem;flex-shrink:0;transition:transform .3s}
+.faq[open] .faq-arr{transform:rotate(45deg)}.faq[open] summary{color:var(--gold)}
+.faq-body{padding:0 18px 15px 42px;font-size:.83rem;color:#7a6651;line-height:1.7;margin:0}
+.rt-box{background:#fff;border-radius:9px;border-left:3px solid var(--gold);padding:20px;margin-top:18px;box-shadow:0 2px 14px rgba(26,21,16,.04)}
+.rt-title{display:flex;align-items:center;gap:8px;font-size:.87rem;font-weight:600;color:var(--ink);margin-bottom:12px}
+.rt-title i{color:var(--gold)}
+.rt-row{display:flex;justify-content:space-between;font-size:.79rem;color:#7a6651;padding:6px 0;border-bottom:1px solid var(--gold-light)}
+.rt-row:last-child{border-bottom:none}.rt-row strong{color:var(--ink)}.rt-hi{color:var(--gold);font-weight:500}
+
+@media(max-width:1024px){.form-wrap{grid-template-columns:1fr;gap:36px}.info-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.info-inner{grid-template-columns:1fr}.info-sec{padding:48px 20px 32px}.form-sec{padding:52px 20px 80px}.form-card{padding:28px 20px}.form-row{grid-template-columns:1fr;gap:0}.page-hero{padding:72px 20px 60px}}
+</style>
+</head>
+<body>
+
+<!-- ═══════ TOPBAR ═══════ -->
+<div class="topbar" id="topbar">
+  🎉 Free shipping on orders over $35
+  <a href="home.html">Shop now →</a>
+  <button class="topbar-close" onclick="document.getElementById('topbar').remove()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<!-- ═══════ NAVBAR ═══════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="home.html" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-book-open"></i></div>
+      <span class="nav-logo-text">Goodreads</span>
+    </a>
+    <div class="nav-search">
+      <input class="ns-input" type="text" placeholder="Search books, authors…" aria-label="Search"/>
+      <button class="ns-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div class="nav-links">
+      <a href="home.html"    class="nav-link">Home</a>
+      <a href="home.html#featured" class="nav-link">Books</a>
+      <a href="home.html#genres"   class="nav-link">Genres</a>
+      <a href="home.html#new"      class="nav-link">New Arrivals</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <button class="nic" title="Wishlist"><i class="fa-regular fa-heart"></i><span class="nbadge">3</span></button>
+      <button class="nic" title="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="nbadge">2</span></button>
+    </div>
+    <div class="nav-sep"></div>
+    <button class="nav-signin"><i class="fa-regular fa-user"></i> Sign In</button>
+    <a href="home.html#featured" class="nav-cta">Browse Books</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars" id="ham-ico"></i></button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mob-overlay" id="mob-overlay"></div>
+<div class="mobile-nav" id="mob-nav">
+  <div class="mob-head">
+    <div class="nav-logo"><div class="nav-logo-icon"><i class="fa-solid fa-book-open"></i></div><span class="nav-logo-text">Goodreads</span></div>
+    <button class="mob-close-btn" id="mob-close"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="mob-body">
+    <div class="mob-search"><input type="text" placeholder="Search books, authors…"/><button><i class="fa-solid fa-magnifying-glass"></i></button></div>
+    <div class="mob-icons-row">
+      <button class="mob-icon-btn"><i class="fa-regular fa-heart"></i> Wishlist (3)</button>
+      <button class="mob-icon-btn"><i class="fa-solid fa-bag-shopping"></i> Cart (2)</button>
+    </div>
+    <span class="mob-section">Navigate</span>
+    <a href="home.html"          class="mob-link"><i class="fa-solid fa-house"></i>Home</a>
+    <a href="home.html#featured" class="mob-link"><i class="fa-solid fa-book"></i>Books</a>
+    <a href="home.html#genres"   class="mob-link"><i class="fa-solid fa-tag"></i>Genres</a>
+    <a href="home.html#new"      class="mob-link"><i class="fa-solid fa-fire"></i>New Arrivals</a>
+    <a href="contact.html"       class="mob-link active"><i class="fa-solid fa-envelope"></i>Contact</a>
+    <span class="mob-section">Account</span>
+    <a href="#" class="mob-link"><i class="fa-regular fa-user"></i>Sign In / Register</a>
+    <button class="mob-cta-btn" id="mob-cta">Browse All Books</button>
+  </div>
+</div>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<main>
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="home.html"><i class="fa-solid fa-house" style="font-size:.78rem"></i>&nbsp;Home</a>
+    <i class="fa-solid fa-chevron-right" style="font-size:.58rem;opacity:.4"></i>
+    <span>Contact</span>
+  </div>
+  <h1>We'd love to hear <em>from you.</em></h1>
+  <p>Questions, orders, book requests, or just want to talk about what you're reading — our team is here.</p>
+</div>
+
+<!-- Info cards -->
+<div class="info-sec">
+  <div class="info-inner">
+    <div class="info-card reveal">
+      <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+      <h4>Email Us</h4>
+      <p><a href="mailto:hello@goodreads.com">hello@goodreads.com</a><br>Replies within 24 hours</p>
+    </div>
+    <div class="info-card reveal" style="transition-delay:.08s">
+      <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+      <h4>Call Us</h4>
+      <p><a href="tel:+18005550198">+1 (800) 555-0198</a><br>Mon–Fri, 9 AM – 6 PM EST</p>
+    </div>
+    <div class="info-card reveal" style="transition-delay:.16s">
+      <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+      <h4>Visit Our Store</h4>
+      <p>142 Literary Lane<br>New York, NY 10001<br>Open daily 10 AM – 8 PM</p>
+    </div>
+  </div>
+</div>
+
+<!-- Form + FAQ -->
+<div class="form-sec">
+  <div class="form-wrap">
+    <div class="form-card reveal">
+      <span class="form-eyebrow">Send a Message</span>
+      <h2 class="form-h2">Get in Touch</h2>
+      <div id="form-success">
+        <div class="sring"><i class="fa-solid fa-check"></i></div>
+        <h3 class="stitle">Message sent!</h3>
+        <p class="sp">Thank you for reaching out. Our team will be in touch within one business day.</p>
+      </div>
+      <form id="cform">
+        <div class="form-row">
+          <div>
+            <label class="flabel" for="fname"><i class="fa-regular fa-user"></i>Name</label>
+            <div class="iwrap"><input type="text" id="fname" class="finput" placeholder="Jane Austen" required/><i class="fa-regular fa-user iico"></i></div>
+          </div>
+          <div>
+            <label class="flabel" for="femail"><i class="fa-regular fa-envelope"></i>Email</label>
+            <div class="iwrap"><input type="email" id="femail" class="finput" placeholder="jane@example.com" required/><i class="fa-regular fa-envelope iico"></i></div>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="flabel" for="fsubj"><i class="fa-solid fa-tag"></i>Subject</label>
+          <div class="iwrap sel-wrap">
+            <select id="fsubj" class="finput"><option value="" disabled selected>Select a topic…</option><option>Order Inquiry</option><option>Book Recommendation</option><option>Return / Exchange</option><option>Events &amp; Readings</option><option>Other</option></select>
+            <i class="fa-solid fa-tag iico"></i>
+          </div>
+        </div>
+        <div class="fg">
+          <label class="flabel" for="fmsg"><i class="fa-regular fa-comment-dots"></i>Message</label>
+          <div class="iwrap"><textarea id="fmsg" class="finput" placeholder="How can we help…" required></textarea><i class="fa-regular fa-comment-dots iico ta-ico"></i></div>
+        </div>
+        <div class="privacy-note"><i class="fa-solid fa-shield-halved"></i><p>Your information is kept private and only used to respond to your inquiry.</p></div>
+        <button type="submit" class="sbtn"><i class="fa-solid fa-paper-plane"></i>Send Message</button>
+      </form>
+    </div>
+
+    <div class="reveal" style="transition-delay:.12s">
+      <span class="sb-eyebrow">Quick Answers</span>
+      <h2 class="sb-h2">FAQs</h2>
+      <details class="faq"><summary><span class="faq-left"><i class="fa-solid fa-truck"></i>How long does shipping take?</span><i class="fa-solid fa-plus faq-arr"></i></summary><p class="faq-body">Standard shipping takes 3–5 business days. Expedited (1–2 days) is available at checkout. Orders over $35 ship free.</p></details>
+      <details class="faq"><summary><span class="faq-left"><i class="fa-solid fa-rotate-left"></i>What is your return policy?</span><i class="fa-solid fa-plus faq-arr"></i></summary><p class="faq-body">Returns are accepted within 30 days. Books must be unread and in original condition.</p></details>
+      <details class="faq"><summary><span class="faq-left"><i class="fa-solid fa-gift"></i>Do you offer gift wrapping?</span><i class="fa-solid fa-plus faq-arr"></i></summary><p class="faq-body">Yes! Gift wrapping is $4.99 per item. You can add a personalised note at checkout.</p></details>
+      <details class="faq"><summary><span class="faq-left"><i class="fa-solid fa-book"></i>Can I request a specific book?</span><i class="fa-solid fa-plus faq-arr"></i></summary><p class="faq-body">Absolutely. Send us the title, author, and ISBN and we can source most titles within 3–7 business days.</p></details>
+      <details class="faq"><summary><span class="faq-left"><i class="fa-solid fa-credit-card"></i>What payment methods do you accept?</span><i class="fa-solid fa-plus faq-arr"></i></summary><p class="faq-body">Visa, Mastercard, Amex, PayPal, Apple Pay, and Google Pay. All transactions are SSL encrypted.</p></details>
+      <div class="rt-box">
+        <div class="rt-title"><i class="fa-solid fa-clock"></i>Response Times</div>
+        <div class="rt-row"><strong>Email</strong><span class="rt-hi">Within 24 hrs</span></div>
+        <div class="rt-row"><strong>Phone</strong><span>Immediate</span></div>
+        <div class="rt-row"><strong>Order issues</strong><span class="rt-hi">Within 4 hrs</span></div>
+        <div class="rt-row"><strong>Book requests</strong><span>3–7 business days</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div>
+        <div class="flogo"><div class="flogo-ico"><i class="fa-solid fa-book-open"></i></div><span class="flogo-txt">Goodreads</span></div>
+        <p class="fdesc">A curated bookstore for readers who love great stories. Discover your next favourite book.</p>
+        <div class="fsocial">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div>
+        <p class="fct">Shop</p>
+        <div class="flinks">
+          <a href="home.html#featured"><i class="fa-solid fa-fire"></i>New Arrivals</a>
+          <a href="home.html#featured"><i class="fa-solid fa-trophy"></i>Bestsellers</a>
+          <a href="home.html#featured"><i class="fa-solid fa-star"></i>Staff Picks</a>
+          <a href="#"><i class="fa-solid fa-gift"></i>Gift Cards</a>
+        </div>
+      </div>
+      <div>
+        <p class="fct">Help</p>
+        <div class="flinks">
+          <a href="#"><i class="fa-solid fa-truck"></i>Shipping &amp; Returns</a>
+          <a href="#"><i class="fa-solid fa-map-pin"></i>Track Order</a>
+          <a href="contact.html"><i class="fa-solid fa-envelope"></i>Contact Us</a>
+          <a href="#"><i class="fa-solid fa-circle-question"></i>FAQs</a>
+        </div>
+      </div>
+      <div>
+        <p class="fct">Newsletter</p>
+        <p class="fnl-lbl">Reading recommendations and exclusive offers, straight to your inbox.</p>
+        <div class="fnl-form"><input type="email" placeholder="your@email.com"/><button>Subscribe</button></div>
+      </div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 Goodreads Bookstore. All rights reserved.</p>
+      <div class="fbot-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',window.scrollY>10));
+const hbtn=document.getElementById('hamburger'),mobNav=document.getElementById('mob-nav'),mobOv=document.getElementById('mob-overlay'),hico=document.getElementById('ham-ico'),mclose=document.getElementById('mob-close'),mobCta=document.getElementById('mob-cta');
+function openMob(){mobNav.classList.add('open');mobOv.classList.add('open');hico.className='fa-solid fa-xmark';document.body.style.overflow='hidden';}
+function closeMob(){mobNav.classList.remove('open');mobOv.classList.remove('open');hico.className='fa-solid fa-bars';document.body.style.overflow='';}
+hbtn.addEventListener('click',()=>mobNav.classList.contains('open')?closeMob():openMob());
+mclose.addEventListener('click',closeMob);mobOv.addEventListener('click',closeMob);
+if(mobCta)mobCta.addEventListener('click',closeMob);
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+const form=document.getElementById('cform'),succ=document.getElementById('form-success');
+form.addEventListener('submit',e=>{e.preventDefault();form.style.cssText='opacity:0;transform:translateY(-8px);transition:all .3s';setTimeout(()=>{form.style.display='none';succ.style.display='block';},320);});
+</script>
+</body>
+</html>
