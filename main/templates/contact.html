@@ -154,14 +154,14 @@ select.finput{padding-right:40px;cursor:pointer}
 <!-- ═══════ TOPBAR ═══════ -->
 <div class="topbar" id="topbar">
   🎉 Free shipping on orders over $35
-  <a href="home.html">Shop now →</a>
+  <a href="{% url 'home' %}">Shop now →</a>
   <button class="topbar-close" onclick="document.getElementById('topbar').remove()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
 </div>
 
 <!-- ═══════ NAVBAR ═══════ -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="home.html" class="nav-logo">
+    <a href="{% url 'home' %}" class="nav-logo">
       <div class="nav-logo-icon"><i class="fa-solid fa-book-open"></i></div>
       <span class="nav-logo-text">Goodreads</span>
     </a>
@@ -170,7 +170,7 @@ select.finput{padding-right:40px;cursor:pointer}
       <button class="ns-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
     <div class="nav-links">
-      <a href="home.html"    class="nav-link">Home</a>
+      <a href="{% url 'home' %}"    class="nav-link">Home</a>
       <a href="home.html#featured" class="nav-link">Books</a>
       <a href="home.html#genres"   class="nav-link">Genres</a>
       <a href="home.html#new"      class="nav-link">New Arrivals</a>
